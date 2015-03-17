@@ -25,3 +25,32 @@ int				args_is_valid(char *arg)
 		return (1);
 	return (0);
 }
+
+
+int			arg_to_display(char *arg)
+{
+	size_t		len;
+
+	if (!arg)
+		return (0);
+	len = 0;
+	while (arg[len] != 0 && arg[len] != '=')
+		len++;
+	if (arg[len] == '=')
+		return (1);
+	return (0);
+}
+
+int			check_all_args(char **args)
+{
+	int	i;
+
+	i = 1;
+	while (args[i])
+	{
+		if (args_is_valid(args[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}

@@ -49,5 +49,7 @@ char			*ft_get_post_env_value(char *post_env);
 void			change_dir(t_env *e, char **args);
 void			display_error(char **args);
 int				ft_is_space(char c);
+int				arg_to_display(char *arg);
+int				check_all_args(char **args);
 
 #endif

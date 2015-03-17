@@ -15,12 +15,26 @@
 void		puts_env(t_env *e, char **args)
 {
 	int		i;
-	char	**unused;
+	// char	**unused;
 
-	unused = args;
+	// unused = args;
 	i = -1;
+	if (check_all_args(args) == 0)
+		return ;
 	while (e->env[++i])
 		ft_printf("%s\n", e->env[i]);
+	i = 1;
+	while(args[i])
+	{
+		if (arg_to_display(args[i]) == 1)
+			ft_printf("%s\n", args[i]);
+		// else
+		// {
+		// 	ft_printf("Bad args\n");
+		// 	break;
+		// }
+		i++;
+	}
 	return ;
 }
 
