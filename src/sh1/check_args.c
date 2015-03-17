@@ -26,8 +26,7 @@ int				args_is_valid(char *arg)
 	return (0);
 }
 
-
-int			arg_to_display(char *arg)
+int				arg_to_display(char *arg)
 {
 	size_t		len;
 
@@ -41,7 +40,7 @@ int			arg_to_display(char *arg)
 	return (0);
 }
 
-int			check_all_args(char **args)
+int				check_all_args(char **args)
 {
 	int	i;
 
