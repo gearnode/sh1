@@ -34,7 +34,9 @@ static void ft_built_in(t_env *e, char **parse_exec, int *error)
 		if (ft_strcmp(parse_exec[0], cmd_table[i].name) == 0)
 		{
 			cmd_table[i].process(e, parse_exec);
-			*error = 0;
+			if (ft_strcmp(parse_exec[0], "env") != 0 && \
+				ft_strcmp(parse_exec[0], "-i") != 0)
+				*error = 0;
 			break ;
 		}
 	}
@@ -45,9 +47,11 @@ static void	ft_exec_bin(t_env *e, char **parse_exec, char *command, int *error)
 	pid_t		father;
 	char		*exec;
 
-	if ((exec = get_path(e, parse_exec)) != NULL && *error != 0)
+	if (*error != 0)
 	{
 		*error = 0;
+		if ((exec = get_path(e, parse_exec)) == NULL)
+			exec = parse_exec[0];
 		father = fork();
 		if (father > 0)
 			wait(NULL);
@@ -55,6 +59,7 @@ static void	ft_exec_bin(t_env *e, char **parse_exec, char *command, int *error)
 		{
 			parse_exec = ft_split_command(command);
 			execve(exec, parse_exec, e->env);
+			ft_printf("ft_minishell1: command not found: %s\n", parse_exec[0]);
 			exit(0);
 		}
 	}
@@ -74,8 +79,6 @@ void		ft_listen_sfd(t_env *e)
 		parse_exec = ft_split_command(command);
 		ft_built_in(e, parse_exec, &error);
 		ft_exec_bin(e, parse_exec, command, &error);
-		if (error == -42 && parse_exec[0] != NULL)
-			ft_printf("ft_minishell1: command not found: %s\n", parse_exec[0]);
 		ft_free_parse_exec(parse_exec);
 	}
 }
