@@ -36,9 +36,9 @@ void		set_env(t_env *e, char **args)
 	if (!args[1])
 		puts_env(e, args);
 	else if (args_is_valid(args[1]) == 1)
-		ft_printf("setenv: Syntax Error.");
+		ft_printf("setenv: Syntax Error.\n");
 	else if (args[2] && args[3])
-		ft_printf("setenv: Too many arguments.");
+		ft_printf("setenv: Too many arguments.\n");
 	else if (get_env(e, args[1]) == -1)
 		new_env(e, args);
 	else
@@ -89,7 +89,7 @@ void		unset_env(t_env *e, char **args)
 
 	if (!args[1])
 	{
-		ft_printf("unsetenv: Too few arguments.");
+		ft_printf("unsetenv: Too few arguments.\n");
 		return ;
 	}
 	i = 1;

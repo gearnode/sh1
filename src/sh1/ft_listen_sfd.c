@@ -59,7 +59,8 @@ static void	ft_exec_bin(t_env *e, char **parse_exec, char *command, int *error)
 		{
 			parse_exec = ft_split_command(command);
 			execve(exec, parse_exec, e->env);
-			ft_printf("ft_minishell1: command not found: %s\n", parse_exec[0]);
+			if (parse_exec[0])
+				ft_printf("ft_minishell1: command not found: %s\n", parse_exec[0]);
 			exit(0);
 		}
 	}

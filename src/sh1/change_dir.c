@@ -42,7 +42,7 @@ static void		tild_dir(t_env *e, char **args)
 
 	if ((home = get_env(e, "HOME")) == -1)
 	{
-		ft_printf("env HOME is not define");
+		ft_printf("env HOME is not define.\n");
 		return ;
 	}
 	oldpwd = get_env(e, "OLDPWD");
